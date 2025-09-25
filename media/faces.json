@@ -1,0 +1,86 @@
+{
+    "neutral": {
+        "eyebrow": "_ _",
+        "ears": "c ",
+        "eyes": "0 0",
+        "nose": " | ",
+        "mouth": " - "
+    },
+    "angry": {
+        "eyebrow": "\\ /",
+        "ears": "c ",
+        "eyes": "0 0",
+        "nose": " | ",
+        "mouth": " ^ "
+    },
+    "dead": {
+        "eyebrow": "_ _",
+        "ears": "c ",
+        "eyes": "X X",
+        "nose": " | ",
+        "mouth": " ^ "
+    },
+    "happy": {
+        "eyebrow": "_ _",
+        "ears": "c ",
+        "eyes": "^ ^",
+        "nose": " | ",
+        "mouth": " ᗜ "
+    },
+    "classy": {
+        "eyebrow": "_ _",
+        "ears": "c-",
+        "eyes": "0=0",
+        "nose": " | ",
+        "mouth": ",_ "
+    },
+    "sad": {
+        "eyebrow": "/ \\",
+        "ears": "c ",
+        "eyes": "0 0",
+        "nose": " | ",
+        "mouth": " ^ "
+    },
+    "cry": {
+        "eyebrow": "_ _",
+        "ears": "c ",
+        "eyes": "T T",
+        "nose": " | ",
+        "mouth": " ^ "
+    },
+    "laugh": {
+        "eyebrow": "_ _",
+        "ears": "c ",
+        "eyes": "> <",
+        "nose": " | ",
+        "mouth": " ᗜ "
+    },
+    "kawaii": {
+        "eyebrow": "_ _",
+        "ears": "c ",
+        "eyes": "> <",
+        "nose": " | ",
+        "mouth": " w "
+    },
+    "uwu": {
+        "eyebrow": "_ _",
+        "ears": "c ",
+        "eyes": "u u",
+        "nose": " | ",
+        "mouth": "\"w\""
+    },
+    "dollar": {
+        "eyebrow": "\\ /",
+        "ears": "c ",
+        "eyes": "$ $",
+        "nose": " | ",
+        "mouth": " ᗜ "
+    },
+    "UWU": {
+        "eyebrow": "_ _",
+        "ears": "c ",
+        "eyes": "U U",
+        "nose": " | ",
+        "mouth": "\"W\""
+    }
+}
