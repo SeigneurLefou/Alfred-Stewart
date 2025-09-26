@@ -1,4 +1,4 @@
-from  header import *
+from header import *
 
 def main():
     parser = argparse.ArgumentParser(
@@ -29,6 +29,19 @@ def main():
     parser_emot.add_argument("--column", "-c", action='store_true', help="Liste les émotions de la base de donnée en colonne.")
     parser_emot.add_argument("--show", "-s", action='store_true', help="Affiche un petit visuel de chaque emotion")
 
+    # Sous-commande "bbl"
+    parser_bbl = subparsers.add_parser("bbl", help="Affiche une bulle de texte à la manière des comics ou des bd.")
+    parser_bbl.add_argument("--txt", "-t", type=str, help="Le texte que vous voulez affichez dans la bulle de texte.")
+    parser_bbl.add_argument("--linesize", "-ls", type=int, help="La taille maximale d'une ligne.")
+
+    # Sous-commande "albbl"
+    parser_albbl = subparsers.add_parser("albbl", help="Faire parler Alfred.")
+    parser_albbl.add_argument("--txt", "-t", type=str, help="Le texte que vous voulez affichez dans la bulle de texte.")
+    with open("media/faces.json", "r", encoding="utf-8") as face_json:
+        dict_face = json.load(face_json)
+        parser_albbl.add_argument("--emot", "-e", choices=[emot for emot in dict_face.keys()], default="neutral")
+    parser_albbl.add_argument("--linesize", "-ls", type=int, help="La taille maximale d'une ligne.")
+
     args = parser.parse_args()
 
     if args.command == "show":
@@ -42,6 +55,16 @@ def main():
             list_show_emot()
         else:
             list_emot()
+    if args.command == "bbl":
+        if args.txt:
+            print_bubble(args.txt, args.linesize or 80)
+        else:
+            print_bubble(line_len = (args.linesize or 80))
+    if args.command == "albbl":
+        if args.txt:
+            print_alfred_bubble(args.txt, emotion = args.emot, line_len = (args.linesize or 80))
+        else:
+            print_alfred_bubble(emotion = args.emot, line_len = (args.linesize or 80))
 
 if __name__ == "__main__":
     main()

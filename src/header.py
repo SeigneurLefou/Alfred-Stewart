@@ -6,6 +6,6 @@ import json
 local_folder = "~/Documents/Github/Alfred-Stewart"
 
 # Python import
-from wrapper import *
+from text import *
 from alfred import *
 from face import *

@@ -60,14 +60,14 @@
         "ears": "c ",
         "eyes": "> <",
         "nose": " | ",
-        "mouth": " w "
+        "mouth": "~w~"
     },
     "uwu": {
         "eyebrow": "_ _",
         "ears": "c ",
         "eyes": "u u",
         "nose": " | ",
-        "mouth": "\"w\""
+        "mouth": "~w~"
     },
     "dollar": {
         "eyebrow": "\\ /",
@@ -81,6 +81,13 @@
         "ears": "c ",
         "eyes": "U U",
         "nose": " | ",
-        "mouth": "\"W\""
+        "mouth": "~W~"
+    },
+    "trauma": {
+        "eyebrow": "_ _",
+        "ears": "c ",
+        "eyes": "O O",
+        "nose": " | ",
+        "mouth": " O "
     }
 }
