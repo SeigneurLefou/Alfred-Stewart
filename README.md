@@ -3,7 +3,8 @@ Install Alfred using the following command. Specify a target directory or omit i
 
 **Usage**:
 ```bash
-dnldlfrd [/path/to/target/directory]  # Default: ~/```
+dnldlfrd [/path/to/target/directory]  # Default: ~/
+```
 
 ```function dnldlfrd() {
     local target_dir="${1:-$HOME}"
