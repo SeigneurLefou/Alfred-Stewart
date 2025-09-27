@@ -1,6 +1,10 @@
 # Alfred-Stewart
+Install Alfred using the following command. Specify a target directory or omit it to install in your home folder (`~/.alfred/`).
 
-Use this command for download Alfred. Complet with the locate of the folder where you want to place the file. Like `... dnldfrd ~/path/to/your/folder/` or nothing if you want it's on the root folder.
+**Usage**:
+```bash
+dnldlfrd [/path/to/target/directory]  # Default: ~/
+
 ```function dnldlfrd() {
     local target_dir="${1:-$HOME}"
     local alfred_dir="$target_dir/.alfred"
