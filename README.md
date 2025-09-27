@@ -5,7 +5,7 @@ Install Alfred using the following command. Specify a target directory or omit i
 ```bash
 dnldlfrd [/path/to/target/directory]  # Default: ~/
 ```
-
+**Command to complete**
 ```function dnldlfrd() {
     local target_dir="${1:-$HOME}"
     local alfred_dir="$target_dir/.alfred"
