@@ -2,9 +2,7 @@
 Install Alfred using the following command. Specify a target directory or omit it to install in your home folder (`~/.alfred/`).
 
 **Usage**:
-```bash
-dnldlfrd [/path/to/target/directory]  # Default: ~/
-```
+`dnldlfrd [/path/to/target/directory]  # Default: ~/`
 **Command to complete**
 ```function dnldlfrd() {
     local target_dir="${1:-$HOME}"
@@ -50,4 +48,5 @@ dnldlfrd [/path/to/target/directory]  # Default: ~/
 
     echo "Alfred est prêt ! Teste-le avec : alfred show"
 }
-dnldlfrd ```
+dnldlfrd
+```
