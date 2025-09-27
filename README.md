@@ -3,7 +3,7 @@ Install Alfred using the following command. Specify a target directory or omit i
 
 **Usage**:
 `dnldlfrd [/path/to/target/directory]  # Default: ~/`
-**Command to complete**
+**Command to complete** _Command non fonctionnelle. Projet en cours la première version entièrement fonctionnel arrive bientôt. Le dev (en souffrance :))_
 ```
 function dnldlfrd() {
     local target_dir="${1:-$HOME}"
