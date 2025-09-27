@@ -3,7 +3,7 @@ import argparse
 import json
 
 # Global variable
-local_folder = "~/Documents/Github/Alfred-Stewart"
+from var import *
 
 # Python import
 from text import *
