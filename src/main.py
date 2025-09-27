@@ -1,4 +1,8 @@
 from header import *
+sys.path.insert(0, f"{local_folder}src/user_function")
+import export_function
+import user_command
+import user_arg
 
 def main():
     parser = argparse.ArgumentParser(
@@ -42,6 +46,11 @@ def main():
         parser_albbl.add_argument("--emot", "-e", choices=[emot for emot in dict_face.keys()], default="neutral")
     parser_albbl.add_argument("--linesize", "-ls", type=int, help="La taille maximale d'une ligne.")
 
+    parser_add_python_function = subparsers.add_parser("add_python_function", help="Permet d'ajouter une commande personnalisé à Alfred")
+    parser_add_python_function. add_argument("--function", "-f", required=True, help="Contenue de la fonction à ajouter. Possible utilisation de `alfred add_python_function -f << cat file_avec_votre_fonction.py`")
+
+    subparsers = user_command.ft_user_command(subparsers)
+
     args = parser.parse_args()
 
     if args.command == "show":
@@ -65,6 +74,10 @@ def main():
             print_alfred_bubble(args.txt, emotion = args.emot, line_len = (args.linesize or 80))
         else:
             print_alfred_bubble(emotion = args.emot, line_len = (args.linesize or 80))
+    if args.command == "add_python_function":
+        add_python_function(args.function)
+    
+    args = user_arg.ft_user_arg(args)
 
 if __name__ == "__main__":
     main()

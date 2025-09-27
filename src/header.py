@@ -1,6 +1,7 @@
 # Library
 import argparse
 import json
+import sys
 
 # Global variable
 from var import *
@@ -9,3 +10,4 @@ from var import *
 from text import *
 from alfred import *
 from face import *
+from write import *
