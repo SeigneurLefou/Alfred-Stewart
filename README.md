@@ -80,4 +80,4 @@ function dnldlfrd() {
 
 After the execution copy and paste this command in your terminal and complete with the path you want to use, or nothing if you want to use root.
 
-`dnldlfrd # [/path/to/target/directory] Default: ~/`
+```dnldlfrd # [/path/to/target/directory] Default: ~/```
