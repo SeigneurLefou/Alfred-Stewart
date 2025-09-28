@@ -14,7 +14,7 @@ Alfred is an assisstant to use for add some automatisation in python, and soon i
 
 `alfred albbl` : Print Alfred with a bubble of text with emotion, text wrapping and size limit.
 
-`alfred add_python_function` : Add an function python define by the user. Use `alfred add_python_function -h "Help text of your function" -f "$(cat file_with_only_one_function)"`
+`alfred add_python_function` : Add an function python define by the user. Use type specificator for argument ! Use `alfred add_python_function -h "Help text of your function" -f "$(cat file_with_only_one_function)"`.
 
 ## Download
 
@@ -29,6 +29,8 @@ function dnldlfrd() {
     local current_shell=$(ps -p $$ | awk 'NR==2 {print $4}')
     local alias_line="alias alfred=\"python3 ${alfred_dir}src/main.py\""
 
+    cd ~/
+
     if ! command -v git &> /dev/null; then
         echo "Erreur : git n'est pas installé." >&2
         return 1
@@ -38,18 +40,6 @@ function dnldlfrd() {
         echo "Erreur : échec du clonage. Vérifie ta connexion réseau." >&2
         return 1
     fi
-
-	mkdir "$alfred_dir/src/user_function"
-	touch "$alfred_dir/src/user_function/export_function.py"
-	touch "$alfred_dir/src/user_function/function_py.py"
-	touch "$alfred_dir/src/user_function/function_sh.sh"
-	echo "from export_function import *
-def ft_user_arg(args):
-	return args" >> "$alfred_dir/src/user_function/user_arg.py"
-	echo "def ft_user_command(subparsers):
-	return subparsers
-	" >> u"$alfred_dir/src/user_function/user_command.py"
-
 
     case "$current_shell" in
         *bash*)
@@ -80,13 +70,12 @@ def ft_user_arg(args):
     esac
 
     local var_line="import os
-local_folder = os.path.expanduser(\"${alfred_dir}\") if \"${alfred_dir}\"[0] == "~" else ${alfred_dir}"
+local_folder = os.path.expanduser(\"${alfred_dir}\") if \"${alfred_dir}\"[0] == \"~\" else \"${alfred_dir}\""
 	echo "$var_line" >> "${alfred_dir}src/var.py"
 	echo "Fichier var.py mis à jour."
 
     echo "Alfred est prêt ! Teste-le avec : alfred show"
 }
-
 ```
 
 After the execution copy and paste this command in your terminal and complete with the path you want to use, or nothing if you want to use root.

@@ -33,12 +33,21 @@ def function_py_info(function_content):
     i += 1
     function_info["argc"] = 0
     function_info["argv"] = []
+    function_info["argt"] = []
     while function_content[i] != ')':
         while function_content[i] not in start_cc_var:
             i += 1
         function_info["argv"].append("")
         while function_content[i] in cc_var:
             function_info["argv"][-1] += function_content[i]
+            i += 1
+        while function_content[i] != ":":
+            i += 1
+        while function_content[i] not in "azertyuiopqsdfghjklmwxcvbn":
+            i += 1
+        function_info["argt"].append("")
+        while function_content[i] in "azertyuiopqsdfghjklmwxcvbn":
+            function_info["argt"][-1] += function_content[i]
             i += 1
         function_info["argc"] += 1
     return function_info
@@ -59,8 +68,8 @@ def add_python_function(function_content:str, help_ft = ""):
             file.write(function_content + '\n')
             print("function add to export_function")
         parser = f"\tparser_{function_info["name"]} = subparsers.add_parser(\"{function_info["name"]}\", help=\"{help_ft}\")\n"
-        for arg in function_info["argv"]:
-            parser += f"\tparser_{function_info["name"]}.add_argument(\"--{arg}\", required = True)\n"
+        for i in range(function_info["argc"]):
+            parser += f"\tparser_{function_info["name"]}.add_argument(\"--{function_info["argv"][i]}\", type={function_info["argt"][i]}, required = True)\n"
         parser += "\treturn subparsers"
 
         param_function = ""
