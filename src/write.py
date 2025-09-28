@@ -49,7 +49,7 @@ def reload_python_function():
 def reload_bash_function():
     pass
 
-def add_python_function(function_content:str):
+def add_python_function(function_content:str, help_ft = ""):
     function_info = function_py_info(function_content)
     if function_content[0:3] == "def" and function_info["name"][0] in "azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN_":
         with open(f"{local_folder}src/user_function/function_py.py", 'a') as file:
@@ -58,7 +58,7 @@ def add_python_function(function_content:str):
         with open(f"{local_folder}src/user_function/export_function.py", 'a') as file:
             file.write(function_content + '\n')
             print("function add to export_function")
-        parser = f"\tparser_{function_info["name"]} = subparsers.add_parser(\"{function_info["name"]}\")\n"
+        parser = f"\tparser_{function_info["name"]} = subparsers.add_parser(\"{function_info["name"]}\", help=\"{help_ft}\")\n"
         for arg in function_info["argv"]:
             parser += f"\tparser_{function_info["name"]}.add_argument(\"--{arg}\", required = True)\n"
         parser += "\treturn subparsers"

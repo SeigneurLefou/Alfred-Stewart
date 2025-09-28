@@ -47,7 +47,8 @@ def main():
     parser_albbl.add_argument("--linesize", "-ls", type=int, help="La taille maximale d'une ligne.")
 
     parser_add_python_function = subparsers.add_parser("add_python_function", help="Permet d'ajouter une commande personnalisé à Alfred")
-    parser_add_python_function. add_argument("--function", "-f", required=True, help="Contenue de la fonction à ajouter. Possible utilisation de `alfred add_python_function -f << cat file_avec_votre_fonction.py`")
+    parser_add_python_function. add_argument("--function", "-f", required=True, help="Contenue de la fonction à ajouter. Possible utilisation de `alfred add_python_function -f \"$(cat file_avec_votre_fonction.py)\"`")
+    parser_add_python_function. add_argument("--help_function", "-hf", type=str, help="Contenue du help de votre fonction")
 
     subparsers = user_command.ft_user_command(subparsers)
 
@@ -75,8 +76,8 @@ def main():
         else:
             print_alfred_bubble(emotion = args.emot, line_len = (args.linesize or 80))
     if args.command == "add_python_function":
-        add_python_function(args.function)
-    
+        add_python_function(args.function, args.help_function or "")
+
     args = user_arg.ft_user_arg(args)
 
 if __name__ == "__main__":

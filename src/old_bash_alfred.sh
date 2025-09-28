@@ -1,9 +1,3 @@
-function emotion()
-{
-	python3 alfred_face.py $1 $2
-}
-
-## A trier et convertir en python
 function bbll()
 {
 	declare text="$1"
@@ -43,18 +37,6 @@ function alfred()
 	echo " |     |"
 }
 
-function alfpers()
-{
-	echo "   ____ "
-	echo "  /    \\"
-	echo "  | $1|"
-	echo "  | $2|"
-	echo "  | $3|"
-	echo "  \\____/"
-	echo "  _| |_"
-	echo " / \\_/ \\"
-	echo " |     |"
-}
 function alpres()
 {
 	echo "   _   _  __            _ "
