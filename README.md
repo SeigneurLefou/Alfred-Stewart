@@ -1,22 +1,21 @@
 # Alfred-Stewart
+---
+---
 
 Alfred is an assisstant to use for add some automatisation in python, and soon in bash, C and C++. You can also use the base command like `alfred albbl "text"` in your .bashrc or in your .zschrc with simple function.
 
 ## Command
+---
 
 `alfred show` : Showing the face of Alfred with emotion precise with --emot flag or "neutral" face
-
 `alfred emot` : Add an emotion with a name, eyebrows, ears, eyes, nose, and mouth
-
 `alfred list` : List available emotion face can be use with alfred. In row, column or with example.
-
 `alfred bbl` : Print a simple bubble with some text wrapping and size limitation.
-
 `alfred albbl` : Print Alfred with a bubble of text with emotion, text wrapping and size limit.
-
 `alfred add_python_function` : Add an function python define by the user. Use `alfred add_python_function -h "Help text of your function" -f "$(cat file_with_only_one_function)"
 
 ## Download
+---
 
 Install Alfred using the following command. Specify a target directory or omit it to install in your home folder (`~/.alfred/`).
 
@@ -29,19 +28,28 @@ function dnldlfrd() {
     local current_shell=$(ps -p $$ | awk 'NR==2 {print $4}')
     local alias_line="alias alfred=\"python3 ${alfred_dir}src/main.py\""
 
-    # Vérifie git
     if ! command -v git &> /dev/null; then
         echo "Erreur : git n'est pas installé." >&2
         return 1
     fi
 
-    # Clone le dépôt
     if ! git clone https://github.com/SeigneurLefou/Alfred-Stewart.git "${alfred_dir}"; then
         echo "Erreur : échec du clonage. Vérifie ta connexion réseau." >&2
         return 1
     fi
 
-    # Détecte le shell ACTIF et ajoute l'alias (sans doublon)
+	mkdir "$alfred_dir/src/user_function"
+	touch "$alfred_dir/src/user_function/export_function.py"
+	touch "$alfred_dir/src/user_function/function_py.py"
+	touch "$alfred_dir/src/user_function/function_sh.sh"
+	echo "from export_function import *
+def ft_user_arg(args):
+	return args" >> "$alfred_dir/src/user_function/user_arg.py"
+	echo "def ft_user_command(subparsers):
+	return subparsers
+	" >> u"$alfred_dir/src/user_function/user_command.py"
+
+
     case "$current_shell" in
         *bash*)
             echo "Configuration pour Bash détectée."
@@ -50,7 +58,7 @@ function dnldlfrd() {
                 source ~/.bashrc
                 echo "Alias ajouté à ~/.bashrc et sourcé."
             else
-                echo "L'alias existe déjà dans ~/.bashrc. Aucune modification nécessaire."
+                echo "L\'alias existe déjà dans ~/.bashrc. Aucune modification nécessaire."
             fi
             ;;
         *zsh*)
@@ -70,14 +78,10 @@ function dnldlfrd() {
             ;;
     esac
 
-    # Met à jour var.py (vérifie aussi les doublons)
-    local var_line="local_folder = os.path.expanduser(\"${alfred_dir}\")"
-    if ! grep -qF "$var_line" "${alfred_dir}src/var.py"; then
-        echo "$var_line" >> "${alfred_dir}src/var.py"
-        echo "Fichier var.py mis à jour."
-    else
-        echo "La ligne existe déjà dans var.py. Aucune modification nécessaire."
-    fi
+    local var_line="import os
+local_folder = os.path.expanduser(\"${alfred_dir}\") if \"${alfred_dir}\"[0] == "~" else ${alfred_dir}"
+	echo "$var_line" >> "${alfred_dir}src/var.py"
+	echo "Fichier var.py mis à jour."
 
     echo "Alfred est prêt ! Teste-le avec : alfred show"
 }
@@ -85,6 +89,4 @@ function dnldlfrd() {
 
 After the execution copy and paste this command in your terminal and complete with the path you want to use, or nothing if you want to use root.
 
-```
-dnldlfrd # [/path/to/target/directory] Default: ~/
-```
+`dnldlfrd # [/path/to/target/directory] Default: ~/`
