@@ -5,10 +5,15 @@ Alfred is an assisstant to use for add some automatisation in python, and soon i
 ## Command
 
 `alfred show` : Showing the face of Alfred with emotion precise with --emot flag or "neutral" face
+
 `alfred emot` : Add an emotion with a name, eyebrows, ears, eyes, nose, and mouth
+
 `alfred list` : List available emotion face can be use with alfred. In row, column or with example.
+
 `alfred bbl` : Print a simple bubble with some text wrapping and size limitation.
+
 `alfred albbl` : Print Alfred with a bubble of text with emotion, text wrapping and size limit.
+
 `alfred add_python_function` : Add an function python define by the user. Use `alfred add_python_function -h "Help text of your function" -f "$(cat file_with_only_one_function)"
 
 ## Download
@@ -80,4 +85,6 @@ function dnldlfrd() {
 
 After the execution copy and paste this command in your terminal and complete with the path you want to use, or nothing if you want to use root.
 
-```dnldlfrd # [/path/to/target/directory] Default: ~/```
+```
+dnldlfrd # [/path/to/target/directory] Default: ~/
+```
