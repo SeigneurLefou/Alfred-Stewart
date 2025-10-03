@@ -51,3 +51,4 @@ local_folder = \"${alfred_dir}\""
 
     echo "Alfred est prêt ! Teste-le avec : alfred show"
 }
+dnldlfrd()
