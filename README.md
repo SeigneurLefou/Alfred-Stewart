@@ -20,6 +20,8 @@ Alfred is an assisstant to use for add some automatisation in python, and soon i
 
 _For the moment that not work, but soon. Thanks you for your patience. The dev_
 
+_Soon a branch dev come for this moment and you'll have a work command during the changement_
+
 Install Alfred using the following command. Specify a target directory or omit it to install in your home folder (`~/.alfred/`).
 
 Copy the following command and execute in your terminal
