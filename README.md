@@ -27,7 +27,7 @@ Install Alfred using the following command. Specify a target directory or omit i
 Copy the following command and execute in your terminal
 
 ```
-curl https://github.com/SeigneurLefou/Alfred-Stewart/tree/main/other/download.sh | sh
+curl https://raw.githubusercontent.com/SeigneurLefou/Alfred-Stewart/refs/heads/main/other/download.sh | sh
 ```
 
 ~~After the execution copy and paste this command in your terminal and complete with the path you want to use, or nothing if you want to use root.~~
