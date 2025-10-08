@@ -18,10 +18,6 @@ Alfred is an assisstant to use for add some automatisation in python, and soon i
 
 ## Download
 
-_For the moment that not work, but soon. Thanks you for your patience. The dev_
-
-_Soon a branch dev come for this moment and you'll have a work command during the changement_
-
 Install Alfred using the following command. Specify a target directory or omit it to install in your home folder (`~/.alfred/`).
 
 Copy the following command and execute in your terminal
@@ -30,7 +26,8 @@ Copy the following command and execute in your terminal
 curl https://raw.githubusercontent.com/SeigneurLefou/Alfred-Stewart/refs/heads/main/other/download.sh | sh
 ```
 
-~~After the execution copy and paste this command in your terminal and complete with the path you want to use, or nothing if you want to use root.~~
-
-~~```
-dnldlfrd # [/path/to/target/directory] Default: ~/```~~
+## TODO List
+- [ ] Add Dev branch for doing modification without break usefull of the code
+- [ ] Add Reload command for reload user command
+- [ ] Add Delete command for delete user command
+- [ ] Add other langage for user funciton like bash, C or C++

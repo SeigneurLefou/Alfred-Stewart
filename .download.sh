@@ -3,6 +3,11 @@ function dnldlfrd() {
     local alfred_dir="${target_dir}/.alfred/"
     local current_shell=$(ps -p $$ | awk 'NR==2 {print $4}')
     local alias_line="alias alfred=\"python3 ${alfred_dir}src/main.py\""
+    local var_line=$(cat <<EOF
+import os
+local_folder = "${alfred_dir}"
+EOF
+)
 
     cd ~/
 
@@ -44,11 +49,9 @@ function dnldlfrd() {
             ;;
     esac
 
-    local var_line="import os
-local_folder = \"${alfred_dir}\""
 	echo "$var_line" >> "${alfred_dir}src/var.py"
 	echo "Fichier var.py mis à jour."
 
     echo "Alfred est prêt ! Teste-le avec : alfred show"
 }
-dnldlfrd()
+dnldlfrd

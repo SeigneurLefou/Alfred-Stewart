@@ -1,4 +1,0 @@
-- Reconnaitre le type des différentes variables des fonctions ajoutés par l'utilisateur et l'ajouter au flag de la commande.
-- Possibilité d'ajouter un help à la fonction créé en python.
-- Même chose que l'écriture des fonctions python mais en bash et en d'autres langages.
-- Ajout de la commande load qui recharge les fonctions de l'utilisateurs. Utile si une erreur a été fait par un utilisateur qui ne voulait pas ajouter l'une de ses fonctions...
