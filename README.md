@@ -27,7 +27,7 @@ curl https://raw.githubusercontent.com/SeigneurLefou/Alfred-Stewart/refs/heads/m
 ```
 
 ## TODO List
-- [ ] Add Dev branch for doing modification without break usefull of the code
+- [ ] Add User function folder with one file by user function for load and delete more clean
 - [ ] Add Reload command for reload user command
 - [ ] Add Delete command for delete user command
 - [ ] Add other langage for user funciton like bash, C or C++
