@@ -1,6 +1,6 @@
 # Alfred-Stewart
 
-Alfred is an assisstant to use for add some automatisation in python, and soon in bash, C and C++. You can also use the base command like `alfred albbl "text"` in your .bashrc or in your .zschrc with simple function.
+Alfred is an assistant to use for add some automatisation or macro in python, and soon in bash, C and C++. You can also use the base command like `alfred albbl "text"` in your .bashrc or in your .zschrc with simple function. The macro is just a little part of the opportunity, you can, with time, code a game and add him in alfred with use sys and different file import with sys.
 
 ## Command
 
@@ -14,7 +14,7 @@ Alfred is an assisstant to use for add some automatisation in python, and soon i
 
 `alfred albbl` : Print Alfred with a bubble of text with emotion, text wrapping and size limit.
 
-`alfred add_python_function` : Add an function python define by the user. Use type specificator for argument ! Use `alfred add_python_function -h "Help text of your function" -f "$(cat file_with_only_one_function)"`.
+`alfred macropy` : Add an function python define by the user. Use type specificator for argument ! Use `alfred macropy -h "Help text of your function" -f "$(cat file_with_only_one_function.py)"`.
 
 ## Download
 
@@ -32,4 +32,4 @@ curl https://raw.githubusercontent.com/SeigneurLefou/Alfred-Stewart/refs/heads/m
 - [ ] Add Alfred library with basic function can be used.
 - [ ] Add Reload command for reload user command
 - [ ] Add Delete command for delete user command
-- [ ] Add other langage for user function like bash, C or C++
+- [ ] Add other langage for user function like bash, C or C++, with command macroc, macrocpp, and macrosh
