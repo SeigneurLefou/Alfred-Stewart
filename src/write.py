@@ -1,5 +1,7 @@
 import sys
-sys.path.insert(0, "../")
+import os
+
+sys.path.insert(0, "../src")
 
 from var import *
 
@@ -60,35 +62,42 @@ def reload_bash_function():
 
 def add_python_function(function_content:str, help_ft = ""):
     function_info = function_py_info(function_content)
+    create_file = True
     if function_content[0:3] == "def" and function_info["name"][0] in "azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN_":
-        with open(f"{local_folder}src/user_function/function_py.py", 'a') as file:
-            file.write(function_content + '\n')
-            print("function add to function_py")
-        with open(f"{local_folder}src/user_function/export_function.py", 'a') as file:
-            file.write(function_content + '\n')
-            print("function add to export_function")
-        parser = f"\tparser_{function_info["name"]} = subparsers.add_parser(\"{function_info["name"]}\", help=\"{help_ft}\")\n"
-        for i in range(function_info["argc"]):
-            parser += f"\tparser_{function_info["name"]}.add_argument(\"--{function_info["argv"][i]}\", type={function_info["argt"][i]}, required = True)\n"
-        parser += "\treturn subparsers"
+        if f"{function_info["name"]}.py" in os.listdir():
+            if input("This command already exist, do you want to erase the older veersion ? [y/N]\n>>> ") in ['y', 'Y']:
+                create_file = True
+            else:
+                create_file = False
+        if create_file:
+            with open(f"{local_folder}user/functions/{function_info["name"]}.py", 'w') as file:
+                file.write(function_content)
+                print("function add to functions/")
+            with open(f"{local_folder}user/export.py", 'a') as file:
+                file.write(f"import {function_info["name"]}\n")
+                print("function add to export")
+            parser = f"\tparser_{function_info["name"]} = subparsers.add_parser(\"{function_info["name"]}\", help=\"{help_ft}\")\n"
+            for i in range(function_info["argc"]):
+                parser += f"\tparser_{function_info["name"]}.add_argument(\"--{function_info["argv"][i]}\", type={function_info["argt"][i]}, required = True)\n"
+            parser += "\treturn subparsers"
 
-        param_function = ""
-        c = 0
-        for arg in function_info["argv"]:
-            param_function += f"args.{arg}"
-            c += 1
-            if c < function_info["argc"]:
-                param_function += ", "
+            param_function = ""
+            c = 0
+            for arg in function_info["argv"]:
+                param_function += f"args.{arg}"
+                c += 1
+                if c < function_info["argc"]:
+                    param_function += ", "
 
-        if_arg = f"\tif args.command == \"{function_info["name"]}\":\n\t\t{function_info["name"]}({param_function})\n\treturn args"
-        
-        delete_last_line(f"{local_folder}src/user_function/user_command.py")
-        delete_last_line(f"{local_folder}src/user_function/user_arg.py")
-        with open(f"{local_folder}src/user_function/user_command.py", 'a') as file:
-            file.write(parser)
+            if_arg = f"\tif args.command == \"{function_info["name"]}\":\n\t\t{function_info["name"]}.{function_info["name"]}({param_function})\n\treturn args"
+            
+            delete_last_line(f"{local_folder}user/commands.py")
+            delete_last_line(f"{local_folder}user/args.py")
+            with open(f"{local_folder}user/commands.py", 'a') as file:
+                file.write(parser)
 
-        with open(f"{local_folder}src/user_function/user_arg.py", 'a') as file:
-            file.write(if_arg)
+            with open(f"{local_folder}user/args.py", 'a') as file:
+                file.write(if_arg)
 
     else:
         raise ValueError("A python function start with \"def\".")

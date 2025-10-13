@@ -1,8 +1,8 @@
 from header import *
-sys.path.insert(0, f"{local_folder}src/user_function")
-import export_function
-import user_command
-import user_arg
+sys.path.insert(0, f"{local_folder}user/")
+import export
+import commands
+import args
 
 def main():
     parser = argparse.ArgumentParser(
@@ -50,35 +50,35 @@ def main():
     parser_add_python_function. add_argument("--function", "-f", required=True, help="Contenue de la fonction à ajouter. Cependant votre fonction doit respecter un entete particulier avec les type des arguments de spécifié `def foo(arg:str, arg:int):`. Possible utilisation de `alfred add_python_function -f \"$(cat file_avec_votre_fonction.py)\"`.")
     parser_add_python_function. add_argument("--help_function", "-hf", type=str, help="Contenue du help de votre fonction")
 
-    subparsers = user_command.ft_user_command(subparsers)
+    subparsers = commands.ft_user_command(subparsers)
 
-    args = parser.parse_args()
+    arguments = parser.parse_args()
 
-    if args.command == "show":
-        print_alfred(args.emot or "neutral")
-    if args.command == "emot":
-        add_face_json(args.name, args.eyebrow or "_ _", args.ears or "c ", args.eyes or "0 0", args.nose or " | ", args.mouth or " - ")
-    if args.command == "list":
-        if args.column:
+    if arguments.command == "show":
+        print_alfred(arguments.emot or "neutral")
+    if arguments.command == "emot":
+        add_face_json(arguments.name, args.eyebrow or "_ _", args.ears or "c ", args.eyes or "0 0", args.nose or " | ", args.mouth or " - ")
+    if arguments.command == "list":
+        if arguments.column:
             column_list_emot()
-        elif args.show:
+        elif arguments.show:
             list_show_emot()
         else:
             list_emot()
-    if args.command == "bbl":
-        if args.txt:
-            print_bubble(args.txt, args.linesize or 80)
+    if arguments.command == "bbl":
+        if arguments.txt:
+            print_bubble(args.txt, arguments.linesize or 80)
         else:
-            print_bubble(line_len = (args.linesize or 80))
-    if args.command == "albbl":
-        if args.txt:
-            print_alfred_bubble(args.txt, emotion = args.emot, line_len = (args.linesize or 80))
+            print_bubble(line_len = (arguments.linesize or 80))
+    if arguments.command == "albbl":
+        if arguments.txt:
+            print_alfred_bubble(arguments.txt, emotion = arguments.emot, line_len = (arguments.linesize or 80))
         else:
-            print_alfred_bubble(emotion = args.emot, line_len = (args.linesize or 80))
-    if args.command == "add_python_function":
-        add_python_function(args.function, args.help_function or "")
+            print_alfred_bubble(emotion = arguments.emot, line_len = (arguments.linesize or 80))
+    if arguments.command == "add_python_function":
+        add_python_function(arguments.function, arguments.help_function or "")
 
-    args = user_arg.ft_user_arg(args)
+    arguments = args.ft_user_arg(arguments)
 
 if __name__ == "__main__":
     main()
