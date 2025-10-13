@@ -16,6 +16,10 @@ Alfred is an assistant to use for add some automatisation or macro in python, an
 
 `alfred macropy` : Add an function python define by the user. Use type specificator for argument ! Use `alfred macropy -h "Help text of your function" -f "$(cat file_with_only_one_function.py)"`.
 
+## User
+
+If you have idea of command who could be useful or not useless so open an issue for present your idea.
+
 ## Download
 
 Install Alfred using the following command. Specify a target directory or omit it to install in your home folder (`~/.alfred/`).
