@@ -46,8 +46,8 @@ def main():
         parser_albbl.add_argument("--emot", "-e", choices=[emot for emot in dict_face.keys()], default="neutral")
     parser_albbl.add_argument("--linesize", "-ls", type=int, help="La taille maximale d'une ligne.")
 
-    parser_add_python_function = subparsers.add_parser("add_python_function", help="Permet d'ajouter une commande personnalisé à Alfred")
-    parser_add_python_function. add_argument("--function", "-f", required=True, help="Contenue de la fonction à ajouter. Cependant votre fonction doit respecter un entete particulier avec les type des arguments de spécifié `def foo(arg:str, arg:int):`. Possible utilisation de `alfred add_python_function -f \"$(cat file_avec_votre_fonction.py)\"`.")
+    parser_add_python_function = subparsers.add_parser("macropy", help="Permet d'ajouter une commande personnalisé à Alfred")
+    parser_add_python_function. add_argument("--function", "-f", required=True, help="Contenue de la fonction à ajouter. Cependant votre fonction doit respecter un entete particulier avec les type des arguments de spécifié `def foo(arg:str, arg:int):`. Possible utilisation de `alfred macropy -f \"$(cat file_avec_votre_fonction.py)\"`.")
     parser_add_python_function. add_argument("--help_function", "-hf", type=str, help="Contenue du help de votre fonction")
 
     subparsers = commands.ft_user_command(subparsers)
@@ -75,8 +75,8 @@ def main():
             print_alfred_bubble(arguments.txt, emotion = arguments.emot, line_len = (arguments.linesize or 80))
         else:
             print_alfred_bubble(emotion = arguments.emot, line_len = (arguments.linesize or 80))
-    if arguments.command == "add_python_function":
-        add_python_function(arguments.function, arguments.help_function or "")
+    if arguments.command == "macropy":
+        macropy(arguments.function, arguments.help_function or "")
 
     arguments = args.ft_user_arg(arguments)
 

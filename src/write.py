@@ -60,7 +60,7 @@ def reload_python_function():
 def reload_bash_function():
     pass
 
-def add_python_function(function_content:str, help_ft = ""):
+def macropy(function_content:str, help_ft = ""):
     function_info = function_py_info(function_content)
     create_file = True
     if function_content[0:3] == "def" and function_info["name"][0] in "azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN_":
@@ -74,9 +74,9 @@ def add_python_function(function_content:str, help_ft = ""):
                 file.write(function_content)
                 print("function add to functions/")
             with open(f"{local_folder}user/export.py", 'a') as file:
-                file.write(f"import {function_info["name"]}\n")
+                file.write(f"\nimport {function_info["name"]}\n")
                 print("function add to export")
-            parser = f"\tparser_{function_info["name"]} = subparsers.add_parser(\"{function_info["name"]}\", help=\"{help_ft}\")\n"
+            parser = f"\n\tparser_{function_info["name"]} = subparsers.add_parser(\"{function_info["name"]}\", help=\"{help_ft}\")\n"
             for i in range(function_info["argc"]):
                 parser += f"\tparser_{function_info["name"]}.add_argument(\"--{function_info["argv"][i]}\", type={function_info["argt"][i]}, required = True)\n"
             parser += "\treturn subparsers"
