@@ -31,9 +31,7 @@ curl https://raw.githubusercontent.com/SeigneurLefou/Alfred-Stewart/refs/heads/m
 ```
 
 ## TODO List
-- [ ] Add User function folder with one file by user function for load and delete more clean
-- [ ] Add basic function like shutdown reboot or other
-- [ ] Add Alfred library with basic function can be used.
-- [ ] Add Reload command for reload user command
-- [ ] Add Delete command for delete user command
+- [ ] Add user function for Reload and Delete more clean
 - [ ] Add other langage for user function like bash, C or C++, with command macroc, macrocpp, and macrosh
+- [ ] Add basic shutdown reboot or other
+- [ ] Add Alfred library with basic function can be used.
