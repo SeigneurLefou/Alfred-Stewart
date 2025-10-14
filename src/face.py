@@ -29,7 +29,7 @@ def str_face_to_list_face(str_face:"str"):
     return list_face
 
 def write_json_file(dict_face):
-    json.dump(dict_face, open(f"{local_folder}/media/face.json", 'w', encoding='utf-8'), indent=4, ensure_ascii=False)
+    json.dump(dict_face, open(f"{local_folder}media/face.json", 'w', encoding='utf-8'), indent=4, ensure_ascii=False)
 
 def add_face_json_with_str(emotion, str_face):
     with open(f"{local_folder}/media/face.json", "r", encoding='utf-8') as face_json:
@@ -46,17 +46,17 @@ def add_face_json(emotion, eyebrow="_ _", ears="c ", eyes="0 0", nose=" | ", mou
         write_json_file(dict_face)
 
 def list_emot():
-    with open(f"{local_folder}/media/face.json", "r", encoding='utf-8') as face_json:
+    with open(f"{local_folder}media/face.json", "r", encoding='utf-8') as face_json:
         dict_face = json.load(face_json)
         print(", ".join(list(dict_face.keys())))
 
 def column_list_emot():
-    with open(f"{local_folder}/media/face.json", "r", encoding='utf-8') as face_json:
+    with open(f"{local_folder}media/face.json", "r", encoding='utf-8') as face_json:
         dict_face = json.load(face_json)
         print("\n".join(list(dict_face.keys())))
 
 def list_show_emot():
-    with open(f"{local_folder}/media/face.json", "r", encoding='utf-8') as face_json:
+    with open(f"{local_folder}media/face.json", "r", encoding='utf-8') as face_json:
         dict_face = json.load(face_json)
         for emot in dict_face.keys():
             print_alfred(emot)
