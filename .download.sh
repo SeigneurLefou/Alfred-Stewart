@@ -7,7 +7,7 @@ function dnldlfrd() {
 {
 	"username":"Bruce",
 	"userfunction":[],
-	"userfolder":"$(alfred_dir)"
+	"userfolder":"$(alfred_dir)/"
 }
 EOF
 )
