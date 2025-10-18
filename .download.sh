@@ -11,6 +11,12 @@ function dnldlfrd() {
 }
 EOF
 )
+    local varfile=$(cat <<EOF
+import json
+with open ("$(alfred_dir)media/userdatta.json, 'r') as data:
+	jsonvar = json.load(data)
+EOF
+)
 
     cd ~/
 
@@ -53,6 +59,7 @@ EOF
     esac
 
 	echo "$userjson" >> "${alfred_dir}media/userdata.json"
+	echo "$varfile" >> "${alfred_dir}src/varjson.py"
 	echo "Fichier userdata.json mis à jour."
 
     echo "Alfred est prêt ! Teste-le avec : alfred show"

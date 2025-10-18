@@ -26,8 +26,22 @@ Install Alfred using the following command. Specify a target directory or omit i
 
 Copy the following command and execute in your terminal
 
+If you use zsh terminal :
+
 ```
-curl https://raw.githubusercontent.com/SeigneurLefou/Alfred-Stewart/refs/heads/main/.download.sh | sh
+curl https://raw.githubusercontent.com/SeigneurLefou/Alfred-Stewart/refs/heads/main/.download.sh | zsh
+```
+
+If you use bash terminal :
+
+```
+curl https://raw.githubusercontent.com/SeigneurLefou/Alfred-Stewart/refs/heads/main/.download.sh | bash
+```
+
+If you use fish terminal :
+
+```
+curl https://raw.githubusercontent.com/SeigneurLefou/Alfred-Stewart/refs/heads/main/.download.sh | fish
 ```
 
 ## TODO List
