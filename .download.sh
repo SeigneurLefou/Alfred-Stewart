@@ -6,7 +6,7 @@ function dnldlfrd() {
     local userjson=$(cat <<EOF
 {
 	"username":"Bruce",
-	"userfunction":[],
+	"userfunctions":[],
 	"userfolder":"${alfred_dir}/"
 }
 EOF
