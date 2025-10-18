@@ -5,15 +5,9 @@ function dnldlfrd() {
     local alias_line="alias alfred=\"python3 ${alfred_dir}/src/main.py\""
     local userjson=$(cat <<EOF
 {
-<<<<<<< HEAD
 	"username":"Bruce",
 	"userfunction":[],
-	"userfolder":"$(alfred_dir)/"
-=======
-    "username":"Bruce",
-    "userfunction":[],
-    "userfolder":"${alfred_dir}"
->>>>>>> 0f48b3d9be9c61c5ec7d35a09c41cdb8772338a2
+	"userfolder":"${alfred_dir}/"
 }
 EOF
     )
@@ -21,6 +15,12 @@ EOF
 import json
 with open("${alfred_dir}/media/userdata.json", "r") as data:
     jsonvar = json.load(data)
+EOF
+    )
+    local exportfile=$(cat <<EOF
+import sys
+sys.path.insert(0, "$alfred_dir/user/functions/")
+# ==========
 EOF
     )
 
@@ -48,6 +48,8 @@ EOF
     echo "$userjson" > "${alfred_dir}/media/userdata.json"
     echo "Fichier userdata.json créé."
     echo "$varfile" > "${alfred_dir}/src/varjson.py"
+    echo "Fichier varjson.py créé."
+    echo "$exportfile" > "${alfred_dir}/user/export.py"
     echo "Fichier varjson.py créé."
 
     # Gestion de l'alias selon le shell

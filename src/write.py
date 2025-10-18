@@ -99,6 +99,11 @@ def macropy(function_content:str, help_ft = ""):
             with open(f"{jsonvar["userfolder"]}user/args.py", 'a') as file:
                 file.write(if_arg)
 
+            with open(f"{jsonvar["userfolder"]}media/userdata.json", 'r', encoding="utf-8") as file:
+                data = json.load(file)
+            data["userfunctions"].append(function_info["name"])
+            with open(f"{jsonvar["userfolder"]}media/userdata.json", 'w', encoding="utf-8") as file:
+                json.dump(data, file, indent=4)
     else:
         raise ValueError("A python function start with \"def\".")
 
