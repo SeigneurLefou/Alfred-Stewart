@@ -1,5 +1,5 @@
 function dnldlfrd() {
-    local target_dir= $HOME
+    local target_dir= ":wq$HOME"
     local alfred_dir="${target_dir}/.alfred/"
     local current_shell=$(ps -p $$ | awk 'NR==2 {print $4}')
     local alias_line="alias alfred=\"python3 ${alfred_dir}src/main.py\""
