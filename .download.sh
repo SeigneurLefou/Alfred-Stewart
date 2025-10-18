@@ -13,10 +13,15 @@ EOF
 )
     local varfile=$(cat <<EOF
 import json
-with open ("$(alfred_dir)media/userdatta.json, 'r') as data:
+with open ("$(alfred_dir)media/userdata.json", 'r') as data:
 	jsonvar = json.load(data)
 EOF
 )
+
+	if [ -d "${alfred_dir}" ]; then
+	    echo "Le dossier ${alfred_dir} existe déjà. Suppression en cours..."
+	    rm -Rf "${alfred_dir}"
+	fi
 
     cd ~/
 
@@ -58,9 +63,9 @@ EOF
             ;;
     esac
 
-	echo "$userjson" >> "${alfred_dir}media/userdata.json"
+	echo "$userjson" > "${alfred_dir}media/userdata.json"
 	echo "Fichier userdata.json mis à jour."
-	echo "$varfile" >> "${alfred_dir}src/varjson.py"
+	echo "$varfile" > "${alfred_dir}src/varjson.py"
 	echo "Fichier varjson.py mis à jour."
 
     echo "Alfred est prêt ! Teste-le avec : alfred show"
