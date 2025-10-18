@@ -1,3 +1,5 @@
 import sys
-sys.path.insert(0, "/home/lchamard/Documents/Github/Alfred-Stewart/user/functions/")
+sys.path.insert(0, "functions/")
 # ============
+
+import echo_function

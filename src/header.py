@@ -4,7 +4,7 @@ import json
 import sys
 
 # Global variable
-from var import *
+from varjson import *
 
 # Python import
 from text import *

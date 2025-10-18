@@ -3,9 +3,12 @@ function dnldlfrd() {
     local alfred_dir="${target_dir}/.alfred/"
     local current_shell=$(ps -p $$ | awk 'NR==2 {print $4}')
     local alias_line="alias alfred=\"python3 ${alfred_dir}src/main.py\""
-    local var_line=$(cat <<EOF
-import os
-local_folder = "${alfred_dir}"
+    local userjson=$(cat <<EOF
+{
+	"username":"Bruce",
+	"userfunction":[],
+	"userfolder":"$(alfred_dir)"
+}
 EOF
 )
 
@@ -49,8 +52,8 @@ EOF
             ;;
     esac
 
-	echo "$var_line" >> "${alfred_dir}src/var.py"
-	echo "Fichier var.py mis à jour."
+	echo "$userjson" >> "${alfred_dir}media/userdata.json"
+	echo "Fichier userdata.json mis à jour."
 
     echo "Alfred est prêt ! Teste-le avec : alfred show"
 }

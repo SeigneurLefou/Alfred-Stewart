@@ -3,7 +3,7 @@ import os
 
 sys.path.insert(0, "../src")
 
-from var import *
+from varjson import *
 
 # deleting a line
 # based on the position
@@ -70,10 +70,10 @@ def macropy(function_content:str, help_ft = ""):
             else:
                 create_file = False
         if create_file:
-            with open(f"{local_folder}user/functions/{function_info["name"]}.py", 'w') as file:
+            with open(f"{jsonvar["userfolder"]}user/functions/{function_info["name"]}.py", 'w') as file:
                 file.write(function_content)
                 print("function add to functions/")
-            with open(f"{local_folder}user/export.py", 'a') as file:
+            with open(f"{jsonvar["userfolder"]}user/export.py", 'a') as file:
                 file.write(f"\nimport {function_info["name"]}\n")
                 print("function add to export")
             parser = f"\n\tparser_{function_info["name"]} = subparsers.add_parser(\"{function_info["name"]}\", help=\"{help_ft}\")\n"
@@ -91,12 +91,12 @@ def macropy(function_content:str, help_ft = ""):
 
             if_arg = f"\tif args.command == \"{function_info["name"]}\":\n\t\t{function_info["name"]}.{function_info["name"]}({param_function})\n\treturn args"
             
-            delete_last_line(f"{local_folder}user/commands.py")
-            delete_last_line(f"{local_folder}user/args.py")
-            with open(f"{local_folder}user/commands.py", 'a') as file:
+            delete_last_line(f"{jsonvar["userfolder"]}user/commands.py")
+            delete_last_line(f"{jsonvar["userfolder"]}user/args.py")
+            with open(f"{jsonvar["userfolder"]}user/commands.py", 'a') as file:
                 file.write(parser)
 
-            with open(f"{local_folder}user/args.py", 'a') as file:
+            with open(f"{jsonvar["userfolder"]}user/args.py", 'a') as file:
                 file.write(if_arg)
 
     else:
