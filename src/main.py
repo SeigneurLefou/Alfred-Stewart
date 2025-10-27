@@ -1,5 +1,5 @@
 from header import *
-sys.path.insert(0, f"{jsonvar["userfolder"]}user/")
+sys.path.insert(0, "{}user/".format(jsonvar["userfolder"]))
 import export
 import commands
 import args
@@ -15,7 +15,7 @@ def main():
 
     # Sous-commande "show"
     parser_show = subparsers.add_parser("show", help="Présentation de Alfred sans bulle de texte.")
-    with open(f"{jsonvar["userfolder"]}media/faces.json", "r", encoding="utf-8") as face_json:
+    with open("{}media/faces.json".format(jsonvar["userfolder"]), "r", encoding="utf-8") as face_json:
         dict_face = json.load(face_json)
         parser_show.add_argument("--emot", "-e", choices=[emot for emot in dict_face.keys()], default="neutral")
 
@@ -41,7 +41,7 @@ def main():
     # Sous-commande "albbl"
     parser_albbl = subparsers.add_parser("albbl", help="Faire parler Alfred.")
     parser_albbl.add_argument("--txt", "-t", type=str, help="Le texte que vous voulez affichez dans la bulle de texte.")
-    with open(f"{jsonvar["userfolder"]}media/faces.json", "r", encoding="utf-8") as face_json:
+    with open("{}media/faces.json".format(jsonvar["userfolder"]), "r", encoding="utf-8") as face_json:
         dict_face = json.load(face_json)
         parser_albbl.add_argument("--emot", "-e", choices=[emot for emot in dict_face.keys()], default="neutral")
     parser_albbl.add_argument("--linesize", "-ls", type=int, help="La taille maximale d'une ligne.")

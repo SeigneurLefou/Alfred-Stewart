@@ -64,21 +64,21 @@ def macropy(function_content:str, help_ft = ""):
     function_info = function_py_info(function_content)
     create_file = True
     if function_content[0:3] == "def" and function_info["name"][0] in "azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN_":
-        if f"{function_info["name"]}.py" in os.listdir():
+        if "{}.py".format(function_info["name"]) in os.listdir():
             if input("This command already exist, do you want to erase the older veersion ? [y/N]\n>>> ") in ['y', 'Y']:
                 create_file = True
             else:
                 create_file = False
         if create_file:
-            with open(f"{jsonvar["userfolder"]}user/functions/{function_info["name"]}.py", 'w') as file:
+            with open("{}user/functions/{}.py".format(jsonvar["userfolder"], function_info["name"]), 'w') as file:
                 file.write(function_content)
                 print("function add to functions/")
-            with open(f"{jsonvar["userfolder"]}user/export.py", 'a') as file:
-                file.write(f"\nimport {function_info["name"]}\n")
+            with open("{}user/export.py".format(jsonvar["userfolder"]), 'a') as file:
+                file.write("\nimport {}\n".format(function_info["name"]))
                 print("function add to export")
-            parser = f"\n\tparser_{function_info["name"]} = subparsers.add_parser(\"{function_info["name"]}\", help=\"{help_ft}\")\n"
+            parser = "\n\tparser_{} = subparsers.add_parser(\"{}\", help=\"{help_ft}\")\n".format(function_info["name"], function_info["name"])
             for i in range(function_info["argc"]):
-                parser += f"\tparser_{function_info["name"]}.add_argument(\"--{function_info["argv"][i]}\", type={function_info["argt"][i]}, required = True)\n"
+                parser += "\tparser_{}.add_argument(\"--{}\", type={}, required = True)\n".format(function_info["name"], function_info["argv"][i], function_info["argt"][i])
             parser += "\treturn subparsers"
 
             param_function = ""
@@ -89,20 +89,20 @@ def macropy(function_content:str, help_ft = ""):
                 if c < function_info["argc"]:
                     param_function += ", "
 
-            if_arg = f"\tif args.command == \"{function_info["name"]}\":\n\t\t{function_info["name"]}.{function_info["name"]}({param_function})\n\treturn args"
+            if_arg = "\tif args.command == \"{}\":\n\t\t{}.{}({})\n\treturn args".format(unction_info["name"], function_info["name"], function_info["name"], function_info["name"], param_function)
             
-            delete_last_line(f"{jsonvar["userfolder"]}user/commands.py")
-            delete_last_line(f"{jsonvar["userfolder"]}user/args.py")
-            with open(f"{jsonvar["userfolder"]}user/commands.py", 'a') as file:
+            delete_last_line("{}user/commands.py".format(jsonvar["userfolder"]))
+            delete_last_line("{}user/args.py".format(jsonvar["userfolder"]))
+            with open("{}user/commands.py".format(jsonvar["userfolder"]), 'a') as file:
                 file.write(parser)
 
-            with open(f"{jsonvar["userfolder"]}user/args.py", 'a') as file:
+            with open("{}user/args.py".format(jsonvar["userfolder"]), 'a') as file:
                 file.write(if_arg)
 
-            with open(f"{jsonvar["userfolder"]}media/userdata.json", 'r', encoding="utf-8") as file:
+            with open("{}media/userdata.json".format(jsonvar["userfolder"]), 'r', encoding="utf-8") as file:
                 data = json.load(file)
             data["userfunctions"].append(function_info["name"])
-            with open(f"{jsonvar["userfolder"]}media/userdata.json", 'w', encoding="utf-8") as file:
+            with open("{}media/userdata.json".format(jsonvar["userfolder"]), 'w', encoding="utf-8") as file:
                 json.dump(data, file, indent=4)
     else:
         raise ValueError("A python function start with \"def\".")
