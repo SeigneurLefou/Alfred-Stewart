@@ -27,14 +27,14 @@ def function_py_info(function_line):
     function_info = {"content": function_content}
     start_cc_var = "azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN_"
     cc_var = "azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN_0123456789"
-    j = 0
-    while function_line[j][0:3] != 'def':
-        j += 1
-    def_line = function_line[j][i]
+    i = 0
+    while function_line[i][0:3] != 'def':
+        i += 1
+    def_line = function_line[i]
     i = 4
     function_info["name"] = ""
     while function_content[i] != '(':
-        function_info["name"] += function_content[j][i]
+        function_info["name"] += def_line[i]
         i += 1
     i += 1
     function_info["argc"] = 0
@@ -44,16 +44,16 @@ def function_py_info(function_line):
         while function_content[i] not in start_cc_var:
             i += 1
         function_info["argv"].append("")
-        while function_content[j][i] in cc_var:
-            function_info["argv"][-1] += function_content[j][i]
+        while def_line[i] in cc_var:
+            function_info["argv"][-1] += def_line[i]
             i += 1
-        while function_content[j][i] != ":":
+        while def_line[i] != ":":
             i += 1
-        while function_content[j][i] not in "azertyuiopqsdfghjklmwxcvbn":
+        while def_line[i] not in "azertyuiopqsdfghjklmwxcvbn":
             i += 1
         function_info["argt"].append("")
-        while function_content[j][i] in "azertyuiopqsdfghjklmwxcvbn":
-            function_info["argt"][-1] += function_content[j][i]
+        while def_line[i] in "azertyuiopqsdfghjklmwxcvbn":
+            function_info["argt"][-1] += def_line[i]
             i += 1
         function_info["argc"] += 1
     return function_info
