@@ -60,3 +60,4 @@ If you have ideas for useful commands or features, feel free to open an issue to
 
 - [ ] Add a library with Alfred’s basic commands
 - [ ] Create a separate repository for add-ons, including themes and bundles for less universal utilities
+- [ ] Create the Alfred website for centralize Alfred download, Add-ons, themes, function bundle and more !
