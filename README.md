@@ -44,8 +44,24 @@ If you use fish terminal :
 curl https://raw.githubusercontent.com/SeigneurLefou/Alfred-Stewart/refs/heads/main/.download.sh | fish
 ```
 
-## TODO List
-- [ ] Add user function for Reload and Delete more clean
-- [ ] Add other langage for user function like bash, C or C++, with command macroc, macrocpp, and macrosh
-- [ ] Add basic shutdown reboot or other
-- [ ] Add Alfred library with basic function can be used.
+## Basic roadmap
+- [x] Add download script
+- [x] Add basic printable command
+- [x] Add emot command
+
+## Macro command roadmap
+- [x] Add macropy command
+- [ ] Add reload command for user function
+- [ ] Add delete command for user function
+- [ ] Add macroc command
+- [ ] Add macrocpp command
+- [ ] Add macrosh command
+
+## Command roadmap
+- [ ] Add shutdown command
+- [ ] Add reboot command
+- [ ] Add basic universal command, with user ideas
+
+## Other if time roadmap
+- [ ] Add librairie with the basic command of alfred
+- [ ] Create an other Repo directory with addons folder can be dowload for add user function with themes bundle for less universal utilities.
