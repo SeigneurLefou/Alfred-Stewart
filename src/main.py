@@ -76,7 +76,7 @@ def main():
         else:
             print_alfred_bubble(emotion = arguments.emot, line_len = (arguments.linesize or 80))
     if arguments.command == "macropy":
-        macropy(arguments.function, arguments.help_function or "")
+        macropy(arguments.function.splitlines(), arguments.help_function or "")
 
     arguments = args.ft_user_arg(arguments)
 

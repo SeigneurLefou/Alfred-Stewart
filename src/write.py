@@ -22,7 +22,7 @@ def delete_last_line(path):
                     fw.write(line)
                 ptr += 1
 
-def function_py_info(function_content):
+def function_py_info(function_line):
     function_content = function_line.join('\n')
     function_info = {"content": function_content}
     start_cc_var = "azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN_"
