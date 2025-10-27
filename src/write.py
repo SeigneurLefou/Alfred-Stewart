@@ -23,10 +23,14 @@ def delete_last_line(path):
                 ptr += 1
 
 def function_py_info(function_content):
+    function_content = function_line.join('\n')
     function_info = {"content": function_content}
     start_cc_var = "azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN_"
     cc_var = "azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN_0123456789"
-    def_line = function_content.split('\n')[0]
+    i = 0
+    while function_line[i][0:3] != 'def':
+        i += 1
+    def_line = function_line[i]
     i = 4
     function_info["name"] = ""
     while function_content[i] != '(':
@@ -65,7 +69,7 @@ def macropy(function_content:str, help_ft = ""):
     create_file = True
     if function_content[0:3] == "def" and function_info["name"][0] in "azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN_":
         if "{}.py".format(function_info["name"]) in os.listdir():
-            if input("This command already exist, do you want to erase the older veersion ? [y/N]\n>>> ") in ['y', 'Y']:
+            if input("This command already exist, do you want to erase the older version ? [y/N]\n>>> ") in ['y', 'Y']:
                 create_file = True
             else:
                 create_file = False
@@ -106,6 +110,3 @@ def macropy(function_content:str, help_ft = ""):
                 json.dump(data, file, indent=4)
     else:
         raise ValueError("A python function start with \"def\".")
-
-def add_bash_function(function_content:str, args:list):
-    pass
