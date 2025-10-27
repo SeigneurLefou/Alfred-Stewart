@@ -56,8 +56,6 @@ If you have ideas for useful commands or features, feel free to open an issue to
 - [ ] Add reboot command
 - [ ] Add basic universal commands (based on user ideas)
 
----
-
 ## Other (If Time Permits)
 
 - [ ] Add a library with Alfred’s basic commands
