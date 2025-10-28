@@ -24,12 +24,6 @@ sys.path.insert(0, "$alfred_dir/src/functions/")
 EOF
     )
 
-	if [ ! -w "$HOME" ]; then
-	    echo "Error: No write permission in $HOME." >&2
-	    return 1
-	fi
-
-
     # Deleting existing directory if necessary
     if [ -d "${alfred_dir}" ]; then
         echo "Directory ${alfred_dir} already exists. Deleting..."
