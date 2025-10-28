@@ -93,7 +93,7 @@ def macropy(function_content:list, help_ft = ""):
             if c < function_info["argc"]:
                 param_function += ", "
 
-        if_arg = "\tif args.command == \"{}\":\n\t\t{}.{}({})\n\treturn args".format(function_info["name"], function_info["name"], function_info["name"], function_info["name"], param_function)
+        if_arg = "\tif args.command == \"{}\":\n\t\t{}.{}({})\n\treturn args".format(function_info["name"], function_info["name"], function_info["name"], param_function)
         
         delete_last_line("{}src/commands.py".format(jsonvar["userfolder"]))
         delete_last_line("{}src/args.py".format(jsonvar["userfolder"]))
