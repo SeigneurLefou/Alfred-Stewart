@@ -43,6 +43,7 @@ EOF
     # Création des dossiers nécessaires
     mkdir -p "${alfred_dir}/media"
     mkdir -p "${alfred_dir}/src"
+    mkdir -p "${alfred_dir}/src/functions"
 
     # Écriture des fichiers de configuration
     echo "$userjson" > "${alfred_dir}/media/userdata.json"
