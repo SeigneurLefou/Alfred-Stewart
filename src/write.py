@@ -74,10 +74,10 @@ def macropy(function_content:list, help_ft = ""):
         else:
             create_file = False
     if create_file:
-        with open("{}user/functions/{}.py".format(jsonvar["userfolder"], function_info["name"]), 'w') as file:
+        with open("{}src/functions/{}.py".format(jsonvar["userfolder"], function_info["name"]), 'w') as file:
             file.write(function_info["content"])
             print("function add to functions/")
-        with open("{}user/export.py".format(jsonvar["userfolder"]), 'a') as file:
+        with open("{}src/export.py".format(jsonvar["userfolder"]), 'a') as file:
             file.write("\nimport {}\n".format(function_info["name"]))
             print("function add to export")
         parser = "\n\tparser_{} = subparsers.add_parser(\"{}\", help=\"{}\")\n".format(function_info["name"], function_info["name"], help_ft)
@@ -95,12 +95,12 @@ def macropy(function_content:list, help_ft = ""):
 
         if_arg = "\tif args.command == \"{}\":\n\t\t{}.{}({})\n\treturn args".format(function_info["name"], function_info["name"], function_info["name"], function_info["name"], param_function)
         
-        delete_last_line("{}user/commands.py".format(jsonvar["userfolder"]))
-        delete_last_line("{}user/args.py".format(jsonvar["userfolder"]))
-        with open("{}user/commands.py".format(jsonvar["userfolder"]), 'a') as file:
+        delete_last_line("{}src/commands.py".format(jsonvar["userfolder"]))
+        delete_last_line("{}src/args.py".format(jsonvar["userfolder"]))
+        with open("{}src/commands.py".format(jsonvar["userfolder"]), 'a') as file:
             file.write(parser)
 
-        with open("{}user/args.py".format(jsonvar["userfolder"]), 'a') as file:
+        with open("{}src/args.py".format(jsonvar["userfolder"]), 'a') as file:
             file.write(if_arg)
 
         with open("{}media/userdata.json".format(jsonvar["userfolder"]), 'r', encoding="utf-8") as file:
