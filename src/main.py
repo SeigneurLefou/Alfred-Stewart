@@ -1,5 +1,4 @@
 from header import *
-sys.path.insert(0, "{}user/".format(jsonvar["userfolder"]))
 import export
 import commands
 import args

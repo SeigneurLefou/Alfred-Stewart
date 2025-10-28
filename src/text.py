@@ -1,5 +1,3 @@
-import sys
-
 def info(txt):
 	info_txt = {}
 	info_txt["size"] = len(txt)

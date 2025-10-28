@@ -19,7 +19,7 @@ EOF
     )
     local exportfile=$(cat <<EOF
 import sys
-sys.path.insert(0, "$alfred_dir/user/functions/")
+sys.path.insert(0, "$alfred_dir/src/functions/")
 # ==========
 EOF
     )
@@ -49,7 +49,7 @@ EOF
     echo "Fichier userdata.json créé."
     echo "$varfile" > "${alfred_dir}/src/varjson.py"
     echo "Fichier varjson.py créé."
-    echo "$exportfile" > "${alfred_dir}/user/export.py"
+    echo "$exportfile" > "${alfred_dir}/src/export.py"
     echo "Fichier varjson.py créé."
 
     # Gestion de l'alias selon le shell

@@ -1,8 +1,4 @@
-import sys
 import os
-
-sys.path.insert(0, "../src")
-
 from varjson import *
 
 # deleting a line
@@ -33,6 +29,11 @@ def function_py_info(function_line):
     def_line = function_line[i]
     i = 4
     function_info["name"] = ""
+    if def_line[i] in start_cc_var:
+        function_info["name"] = def_line[i]
+    else:
+        raise ValueError("Your function can't work with this name.")
+    i += 1
     while def_line[i] != '(':
         function_info["name"] += def_line[i]
         i += 1
@@ -64,49 +65,46 @@ def reload_python_function():
 def reload_bash_function():
     pass
 
-def macropy(function_content:str, help_ft = ""):
+def macropy(function_content:list, help_ft = ""):
     function_info = function_py_info(function_content)
     create_file = True
-    if function_content[0:3] == "def" and function_info["name"][0] in "azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN_":
-        if "{}.py".format(function_info["name"]) in os.listdir():
-            if input("This command already exist, do you want to erase the older version ? [y/N]\n>>> ") in ['y', 'Y']:
-                create_file = True
-            else:
-                create_file = False
-        if create_file:
-            with open("{}user/functions/{}.py".format(jsonvar["userfolder"], function_info["name"]), 'w') as file:
-                file.write(function_content)
-                print("function add to functions/")
-            with open("{}user/export.py".format(jsonvar["userfolder"]), 'a') as file:
-                file.write("\nimport {}\n".format(function_info["name"]))
-                print("function add to export")
-            parser = "\n\tparser_{} = subparsers.add_parser(\"{}\", help=\"{help_ft}\")\n".format(function_info["name"], function_info["name"])
-            for i in range(function_info["argc"]):
-                parser += "\tparser_{}.add_argument(\"--{}\", type={}, required = True)\n".format(function_info["name"], function_info["argv"][i], function_info["argt"][i])
-            parser += "\treturn subparsers"
+    if "{}.py".format(function_info["name"]) in os.listdir():
+        if input("This command already exist, do you want to erase the older version ? [y/N]\n>>> ") in ['y', 'Y']:
+            create_file = True
+        else:
+            create_file = False
+    if create_file:
+        with open("{}user/functions/{}.py".format(jsonvar["userfolder"], function_info["name"]), 'w') as file:
+            file.write(function_info["content"])
+            print("function add to functions/")
+        with open("{}user/export.py".format(jsonvar["userfolder"]), 'a') as file:
+            file.write("\nimport {}\n".format(function_info["name"]))
+            print("function add to export")
+        parser = "\n\tparser_{} = subparsers.add_parser(\"{}\", help=\"{}\")\n".format(function_info["name"], function_info["name"], help_ft)
+        for i in range(function_info["argc"]):
+            parser += "\tparser_{}.add_argument(\"--{}\", type={}, required = True)\n".format(function_info["name"], function_info["argv"][i], function_info["argt"][i])
+        parser += "\treturn subparsers"
 
-            param_function = ""
-            c = 0
-            for arg in function_info["argv"]:
-                param_function += f"args.{arg}"
-                c += 1
-                if c < function_info["argc"]:
-                    param_function += ", "
+        param_function = ""
+        c = 0
+        for arg in function_info["argv"]:
+            param_function += f"args.{arg}"
+            c += 1
+            if c < function_info["argc"]:
+                param_function += ", "
 
-            if_arg = "\tif args.command == \"{}\":\n\t\t{}.{}({})\n\treturn args".format(unction_info["name"], function_info["name"], function_info["name"], function_info["name"], param_function)
-            
-            delete_last_line("{}user/commands.py".format(jsonvar["userfolder"]))
-            delete_last_line("{}user/args.py".format(jsonvar["userfolder"]))
-            with open("{}user/commands.py".format(jsonvar["userfolder"]), 'a') as file:
-                file.write(parser)
+        if_arg = "\tif args.command == \"{}\":\n\t\t{}.{}({})\n\treturn args".format(function_info["name"], function_info["name"], function_info["name"], function_info["name"], param_function)
+        
+        delete_last_line("{}user/commands.py".format(jsonvar["userfolder"]))
+        delete_last_line("{}user/args.py".format(jsonvar["userfolder"]))
+        with open("{}user/commands.py".format(jsonvar["userfolder"]), 'a') as file:
+            file.write(parser)
 
-            with open("{}user/args.py".format(jsonvar["userfolder"]), 'a') as file:
-                file.write(if_arg)
+        with open("{}user/args.py".format(jsonvar["userfolder"]), 'a') as file:
+            file.write(if_arg)
 
-            with open("{}media/userdata.json".format(jsonvar["userfolder"]), 'r', encoding="utf-8") as file:
-                data = json.load(file)
-            data["userfunctions"].append(function_info["name"])
-            with open("{}media/userdata.json".format(jsonvar["userfolder"]), 'w', encoding="utf-8") as file:
-                json.dump(data, file, indent=4)
-    else:
-        raise ValueError("A python function start with \"def\".")
+        with open("{}media/userdata.json".format(jsonvar["userfolder"]), 'r', encoding="utf-8") as file:
+            data = json.load(file)
+        data["userfunctions"].append(function_info["name"])
+        with open("{}media/userdata.json".format(jsonvar["userfolder"]), 'w', encoding="utf-8") as file:
+            json.dump(data, file, indent=4)
