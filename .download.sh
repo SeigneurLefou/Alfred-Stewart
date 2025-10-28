@@ -2,7 +2,7 @@ function dnldlfrd() {
     local target_dir="$HOME"
     local alfred_dir="${target_dir}/.alfred"
     local current_shell=$(ps -p $$ | awk 'NR==2 {print $4}')
-    local alias_line="alias alfred=\"python3 ${alfred_dir}/src/main.py\""
+    local alias_line='alias alfred="python3 ${alfred_dir}/src/main.py"'
     local userjson=$(cat <<EOF
 {
 	"username":"Bruce",
@@ -24,61 +24,89 @@ sys.path.insert(0, "$alfred_dir/src/functions/")
 EOF
     )
 
-    # Suppression du dossier existant si nécessaire
+	if [ ! -w "$HOME" ]; then
+	    echo "Error: No write permission in $HOME." >&2
+	    return 1
+	fi
+
+
+    # Deleting existing directory if necessary
     if [ -d "${alfred_dir}" ]; then
-        echo "Le dossier ${alfred_dir} existe déjà. Suppression en cours..."
+        echo "Directory ${alfred_dir} already exists. Deleting..."
         rm -Rf "${alfred_dir}"
+        echo "Directory deleted."
     fi
 
-    # Clone du dépôt
+    # Cloning the repository
     if ! command -v git &> /dev/null; then
-        echo "Erreur : git n'est pas installé." >&2
+        echo "Error: git is not installed." >&2
         return 1
     fi
+    echo "Cloning repository..."
     if ! git clone https://github.com/SeigneurLefou/Alfred-Stewart.git "${alfred_dir}"; then
-        echo "Erreur : échec du clonage. Vérifie ta connexion réseau." >&2
+        echo "Error: Clone failed. Check your network connection." >&2
         return 1
     fi
+    echo "Repository cloned successfully."
 
-    # Création des dossiers nécessaires
+    # Creating necessary directories
+    echo "Creating media directory..."
     mkdir -p "${alfred_dir}/media"
+    echo "Media folder created."
+
+    echo "Creating src directory..."
     mkdir -p "${alfred_dir}/src"
+    echo "SRC folder created."
+
+    echo "Creating functions directory..."
     mkdir -p "${alfred_dir}/src/functions"
+    echo "Functions folder created."
 
-    # Écriture des fichiers de configuration
+    # Writing configuration files
+    echo "Creating userdata.json..."
     echo "$userjson" > "${alfred_dir}/media/userdata.json"
-    echo "Fichier userdata.json créé."
-    echo "$varfile" > "${alfred_dir}/src/varjson.py"
-    echo "Fichier varjson.py créé."
-    echo "$exportfile" > "${alfred_dir}/src/export.py"
-    echo "Fichier varjson.py créé."
+    echo "File userdata.json created."
 
-    # Gestion de l'alias selon le shell
+    echo "Creating varjson.py..."
+    echo "$varfile" > "${alfred_dir}/src/varjson.py"
+    echo "File varjson.py created."
+
+    echo "Creating export.py..."
+    echo "$exportfile" > "${alfred_dir}/src/export.py"
+    echo "File export.py created."
+
+	if ! command -v python3 &> /dev/null; then
+	    echo "Error: python3 is not installed." >&2
+	    return 1
+	fi
+
+    # Managing alias according to shell
     case "$current_shell" in
         *bash*)
-            echo "Configuration pour Bash détectée."
+            echo "Bash configuration detected."
             if ! grep -qF "$alias_line" ~/.bashrc; then
+                echo "Adding alias to ~/.bashrc..."
                 echo "$alias_line" >> ~/.bashrc
-                echo "Alias ajouté à ~/.bashrc. Exécute 'source ~/.bashrc' pour l'activer."
+                echo "Alias added to ~/.bashrc. Run 'source ~/.bashrc' to activate."
             else
-                echo "L'alias existe déjà dans ~/.bashrc."
+                echo "Alias already exists in ~/.bashrc."
             fi
             ;;
         *zsh*)
-            echo "Configuration pour Zsh détectée."
+            echo "Zsh configuration detected."
             if ! grep -qF "$alias_line" ~/.zshrc; then
+                echo "Adding alias to ~/.zshrc..."
                 echo "$alias_line" >> ~/.zshrc
-                echo "Alias ajouté à ~/.zshrc. Exécute 'source ~/.zshrc' pour l'activer."
+                echo "Alias added to ~/.zshrc. Run 'source ~/.zshrc' to activate."
             else
-                echo "L'alias existe déjà dans ~/.zshrc."
+                echo "Alias already exists in ~/.zshrc."
             fi
             ;;
         *)
-            echo "Shell non reconnu ($current_shell). Ajoute manuellement l'alias :"
+            echo "Unrecognized shell ($current_shell). Manually add the alias:"
             echo "$alias_line"
             ;;
     esac
 
-    echo "Alfred est prêt ! Teste-le avec : alfred show"
+    echo "Alfred is ready! Test it with: alfred show"
 }
-dnldlfrd
