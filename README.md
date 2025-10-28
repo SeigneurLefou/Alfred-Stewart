@@ -1,6 +1,6 @@
 # Alfred-Stewart
 
-Alfred is a personal assistant designed to automate tasks or create macros in Python, and soon in Bash, C, and C++. You can also use basic commands like `alfred albbl "text"` in your `.bashrc` or `.zshrc` by defining simple functions. Macros are just one part of Alfred's capabilities—over time, you could even code a game and integrate it into Alfred using `sys` and importing different files.
+Alfred is a personal assistant designed to automate tasks or create macros in Python, and soon in Bash, C, and C++. Macros is function in this langages than Alfred include in his code like a command and you can use zith this. You can also use basic commands like `alfred albbl "text"` in your `.bashrc` or `.zshrc` by defining simple functions. Macros are just one part of Alfred's capabilities—over time, you could even code a game and integrate it into Alfred using `sys` and importing different files.
 
 ## Commands
 
