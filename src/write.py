@@ -33,14 +33,14 @@ def function_py_info(function_line):
     def_line = function_line[i]
     i = 4
     function_info["name"] = ""
-    while function_content[i] != '(':
+    while def_line[i] != '(':
         function_info["name"] += def_line[i]
         i += 1
     i += 1
     function_info["argc"] = 0
     function_info["argv"] = []
     function_info["argt"] = []
-    while function_content[i] != ')':
+    while def_line[i] != ')':
         while function_content[i] not in start_cc_var:
             i += 1
         function_info["argv"].append("")
