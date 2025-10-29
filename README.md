@@ -49,6 +49,7 @@ If you have ideas for useful commands or features, feel free to open an issue to
 - [ ] Add `macroc` command
 - [ ] Add `macrocpp` command
 - [ ] Add `macrosh` command
+- [ ] Add `macroasm` command
 
 ## Command Roadmap
 
